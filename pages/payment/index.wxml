@@ -1,0 +1,34 @@
+<!--pages/payment/index.wxml-->
+<view class='container'>
+  <view class='user-box'>
+    <view class='username'>{{detail.name}}</view>
+    <view bindtap='ruleOpenHandle' class='rule-box'>活动规则</view>
+    <view class='words'>“ 我的网课，需要兄弟来助力，一起来砍价免费拿 ”</view>
+  </view>
+  <!-- 倒计时 -->
+  <view class='clock-box'>
+    <image class='photo' src='../../images/img/photo.png'></image>
+    <view class='right'>
+      <view class='name'>
+        学神代刷网课
+      </view>
+      <view class='timer'>
+        <text class="time-box">{{day}}</text> 天
+        <text class="time-box">{{hour}}</text> :
+        <text class="time-box">{{min}}</text> :
+        <text class="time-box">{{sec}}</text>
+      </view>
+      <view class='price'>￥{{detail.totalPrice}}</view>
+    </view>
+  </view>
+  <!-- 进度条 -->
+  <view class='progress-box'>
+    <view class='tip'>已砍 {{detail.totalPrice-detail.remainprice}} 元，还差 {{detail.remainprice}} 元</view>
+    <view class='progress-bar'>
+      <view class='progress' style='width:{{(detail.totalPrice-detail.remainprice)/detail.totalPrice*100}}%'></view>
+    </view>
+  </view>
+  <!-- 按钮 -->
+  <button class='payBtn btn' bindtap="payHandle">立即购买</button>
+  <button class='helpBtn btn' open-type="share" bindtap="helpHandle">求好友助攻</button>
+</view>

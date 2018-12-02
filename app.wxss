@@ -1,0 +1,11 @@
+/**app.wxss**/
+
+.container {
+}
+
+.bg-grey {
+  background-color: #f2f2f2;
+}
+.blue{
+    color: #006dff;
+}

@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/lessons/index",
+    "pages/payment/index",
+    "pages/list/index",
+    "pages/login/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "超星待看系统",
+    "navigationBarTextStyle": "black"
+  }
+}
