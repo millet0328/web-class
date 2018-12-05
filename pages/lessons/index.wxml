@@ -7,3 +7,5 @@
     </navigator>
   </view>
 </view>
+<!-- 授权模态框 -->
+<auth-modal show='{{authModalShow}}' bind:getAuth='authHandle' bind:cancel='cancelAuth'></auth-modal>

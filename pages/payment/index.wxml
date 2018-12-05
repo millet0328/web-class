@@ -7,7 +7,7 @@
   </view>
   <!-- 倒计时 -->
   <view class='clock-box'>
-    <image class='photo' src='../../images/img/photo.png'></image>
+    <image class='photo' src='{{detail.head}}'></image>
     <view class='right'>
       <view class='name'>
         学神代刷网课
@@ -23,12 +23,15 @@
   </view>
   <!-- 进度条 -->
   <view class='progress-box'>
-    <view class='tip'>已砍 {{detail.totalPrice-detail.remainprice}} 元，还差 {{detail.remainprice}} 元</view>
+    <view class='tip'>已砍 {{detail.cutPrice}} 元，还差 {{detail.remainprice}} 元</view>
     <view class='progress-bar'>
-      <view class='progress' style='width:{{(detail.totalPrice-detail.remainprice)/detail.totalPrice*100}}%'></view>
+      <view class='progress' style='width:{{detail.cutPrice/detail.totalPrice*100}}%'></view>
     </view>
   </view>
-  <!-- 按钮 -->
-  <button class='payBtn btn' bindtap="payHandle">立即购买</button>
-  <button class='helpBtn btn' open-type="share" bindtap="helpHandle">求好友助攻</button>
+  <!-- 自己 -->
+  <button hidden="{{!detail.isSelf}}" class='red btn' bindtap="payHandle">立即购买</button>
+  <button hidden="{{!detail.isSelf}}" class='yellow btn' open-type="share">求好友助攻</button>
+	<!-- 好友 -->
+	<button hidden="{{detail.isSelf}}" disabled='{{detail.isCuted}}' class='red btn' bindtap="cutHandle">帮兄弟砍一刀</button>
+	<button hidden="{{detail.isSelf}}" class='yellow btn'>我也要刷课</button>
 </view>

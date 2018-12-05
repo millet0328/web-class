@@ -47,9 +47,27 @@ Page({
       showSelect: false,
     });
   },
+  // 表单验证
+  validate(formData) {
+    // 表单项是否为空
+    for (var key in formData) {
+      if (!formData[key]) {
+        wx.showToast({
+          title: '请完整填写信息！',
+          icon: 'none',
+        });
+        return false;
+      }
+    }
+    return true;
+  },
   // 表单提交
   formSubmit(e) {
     let data = e.detail.value;
+    var flag = this.validate(data);
+    if (!flag) {
+      return false;
+    }
     data.x = data.x || 1;
     data.action = this.data.id;
     app.ajax({
