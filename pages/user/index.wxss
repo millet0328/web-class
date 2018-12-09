@@ -18,6 +18,7 @@
 
 .avatar {
    width: 250rpx;
+   height:250rpx;
    border: 1rpx solid #ccc;
    border-radius: 100%;
    overflow: hidden;
