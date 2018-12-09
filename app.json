@@ -4,6 +4,7 @@
       "pages/order/index",
       "pages/payment/index",
       "pages/list/index",
+      "pages/user/index",
       "pages/login/index"
    ],
    "window": {
@@ -21,6 +22,10 @@
          {
             "pagePath": "pages/order/index",
             "text": "订单"
+         },
+         {
+            "pagePath": "pages/user/index",
+            "text": "我的"
          }
       ]
    }
