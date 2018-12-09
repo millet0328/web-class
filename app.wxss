@@ -4,8 +4,17 @@
 }
 
 .bg-grey {
-  background-color: #f2f2f2;
+   background-color: #f2f2f2;
 }
-.blue{
-    color: #006dff;
+
+.blue {
+   color: #006dff;
+}
+
+.orange {
+   color: #f0ad4e;
+}
+
+.gray {
+   color: gray;
 }

@@ -1,14 +1,27 @@
 {
-  "pages": [
-    "pages/lessons/index",
-    "pages/payment/index",
-    "pages/list/index",
-    "pages/login/index"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "超星待看系统",
-    "navigationBarTextStyle": "black"
-  }
+   "pages": [
+      "pages/lessons/index",
+      "pages/order/index",
+      "pages/payment/index",
+      "pages/list/index",
+      "pages/login/index"
+   ],
+   "window": {
+      "backgroundTextStyle": "light",
+      "navigationBarBackgroundColor": "#fff",
+      "navigationBarTitleText": "悠悠网课",
+      "navigationBarTextStyle": "black"
+   },
+   "tabBar": {
+      "list": [
+         {
+            "pagePath": "pages/lessons/index",
+            "text": "首页"
+         },
+         {
+            "pagePath": "pages/order/index",
+            "text": "订单"
+         }
+      ]
+   }
 }

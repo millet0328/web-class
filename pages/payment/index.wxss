@@ -111,3 +111,53 @@
 	background-color: #f0ad4e;
 	margin-bottom: 20rpx;
 }
+
+/* 砍价排行榜 */
+.rank-list {
+	background-color: #FFF9EB;
+	margin-top: 60rpx;
+	box-shadow: 0 0 10rpx 0 rgba(0, 0, 0, 0.1);
+}
+
+.rank-list .title {
+	text-align: center;
+	font-size: 36rpx;
+	padding: 21rpx 0;
+	border-radius: 6rpx;
+}
+
+.rank-list .li {
+	display: flex;
+	align-items: center;
+	padding: 22rpx 30rpx;
+	background-color: white;
+	margin-top: 4rpx;
+}
+
+.rank-list .li .avatar {
+	padding-right: 20rpx;
+}
+
+.rank-list .li .avatar image {
+	width: 120rpx;
+	height: 120rpx;
+	border-radius: 100%;
+}
+
+.rank-list .li .info {
+	flex: 1;
+}
+
+.info .name {
+	font-size: 32rpx;
+	padding-bottom: 30rpx;
+}
+
+.info .words {
+	font-size: 26rpx;
+	color: #888;
+}
+
+.rank-list .money {
+	font-size: 26rpx;
+}

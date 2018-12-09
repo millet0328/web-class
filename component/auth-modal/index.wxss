@@ -9,6 +9,7 @@
   text-align: center;
   background-color: rgba(0, 0, 0, 0.5);
   display: none;
+  z-index: 1000;
 }
 
 .shadow.show {
@@ -59,7 +60,7 @@
 }
 
 .modal-box .auth {
-  background-color: #ffc51b;
+  background-color: #006dff;
   color: #fff;
   border-bottom-right-radius: 8rpx;
 }

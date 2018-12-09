@@ -1,5 +1,6 @@
 // pages/payment/index.js
 const app = getApp();
+let timer;
 Page({
 
 	/**
@@ -8,10 +9,33 @@ Page({
 	data: {
 		id: "",
 		detail: {},
+		friends: [],
 		day: "00",
 		hour: "00",
 		min: "00",
 		sec: "00",
+		authModalShow: '', // 是否显示授权modal
+	},
+	// 获取用户授权
+	authHandle(e) {
+		this.encryptedData(e.detail).then((result) => {
+         wx.setStorageSync("unionId", result);
+			this.setData({
+				authModalShow: false
+			});
+		})
+	},
+	// 发送给后台换取unionId
+	encryptedData(data) {
+		return app.ajax({
+			method: "POST",
+			url: "/xcx/uid/",
+			data: {
+				sessionKey: wx.getStorageSync("session_key"),
+				encryptedData: data.encryptedData,
+				iv: data.iv,
+			}
+		})
 	},
 	// 打开规则
 	ruleOpenHandle() {
@@ -31,14 +55,17 @@ Page({
 				}
 			})
 			.then((result) => {
-				console.log(id)
-				console.log(wx.getStorageSync("openid"))
-				console.log(result)
+				if (result.friends) {
+					this.setData({
+						friends: result.friends,
+					});
+				}
 				this.setData({
-					detail: result.data
+					detail: result.data,
 				});
 				let maxDate = this.data.detail.time;
-				setInterval(() => {
+				clearInterval(timer);
+				timer = setInterval(() => {
 					let now = new Date();
 					this.dateformat(maxDate - now);
 				}, 1000);
@@ -48,20 +75,41 @@ Page({
 	cutHandle() {
 		app.ajax({
 			method: "GET",
-			url: "/cxing/kj/json.php",
+			url: "/xcx/kj.php",
 			data: {
 				kj: 1,
 				id: this.data.id,
 				openid: wx.getStorageSync("openid")
 			}
 		}).then((result) => {
-			console.log(result)
+			if (result == -1) {
+				wx.showToast({
+					title: "砍价失败！",
+					icon: 'none'
+				});
+				return false;
+			}
+			wx.showToast({
+				title: '砍价成功!',
+				icon: 'success',
+				duration: 2000,
+				success: () => {
+					this.getDetail(this.data.id);
+				}
+			})
+
+		});
+	},
+	navigateHome() {
+		wx.switchTab({
+			url: "/pages/lessons/index"
 		});
 	},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function(options) {
+		// options.id = 389181;
 		this.setData({
 			id: options.id
 		});
@@ -74,26 +122,34 @@ Page({
 			url: "/xcx/wxzf/",
 			data: {
 				id: this.data.id,
-
 			}
 		}).then((result) => {
-			let {
-				timeStamp,
-				nonceStr,
-				signType,
-				paySign
-			} = result;
+			let { timeStamp, nonceStr, signType, paySign } = result;
 			wx.requestPayment({
 				timeStamp,
 				nonceStr,
 				"package": result.package,
 				signType,
 				paySign,
-				success(res) {
-					console.log(res);
+				success:(res)=> {
+					wx.showToast({
+						title: '付款成功!',
+						icon: 'success',
+						duration: 2000,
+						success:()=> {
+                     wx.switchTab({
+                        url: "/pages/order/index"
+                     });
+						}
+					});
 				},
 				fail(res) {
-					console.log(res);
+					if (res.errMsg == "requestPayment:fail cancel") {
+						wx.showToast({
+							title: "取消成功！",
+							icon: 'none'
+						});
+					}
 				}
 			})
 		});
@@ -138,7 +194,29 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function() {
+		// 监测用户授权
+		wx.getSetting({
+			success: res => {
+				if (!res.authSetting['scope.userInfo']) {
+					this.setData({
+						authModalShow: true
+					});
+					return false;
+				}
+				if (res.authSetting['scope.userInfo']) {
+					// 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+					wx.getUserInfo({
+						success: res => {
+							// 可以将 res 发送给后台解码出 unionId
+							this.encryptedData(res).then((result) => {
+                        wx.setStorageSync("unionId", result);
+							})
 
+						}
+					})
+				}
+			}
+		})
 	},
 
 	/**
@@ -175,7 +253,7 @@ Page({
 	onShareAppMessage: function() {
 		return {
 			title: '我的网课，需要兄弟来助力，一起来砍价免费拿',
-			path: `/pages/payment/index?id=${this.data.id}`
+			path: '/pages/payment/index?id=' + this.data.id
 		}
 	}
 })
