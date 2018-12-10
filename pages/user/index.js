@@ -12,25 +12,14 @@ Page({
    },
    // 获取用户授权
    authHandle(e) {
-      this.encryptedData(e.detail).then((result) => {
+      let data = e.detail;
+      data.Recommender = this.data.recommender;
+      app.encryptedData(data).then((result) => {
          wx.setStorageSync("unionId", result);
          this.getDetailList();
          this.setData({
             authModalShow: false
          });
-      })
-   },
-   // 发送给后台换取unionId
-   encryptedData(data) {
-      return app.ajax({
-         method: "POST",
-         url: "/xcx/uid/",
-         data: {
-            sessionKey: wx.getStorageSync("session_key"),
-            encryptedData: data.encryptedData,
-            iv: data.iv,
-            "Recommender": this.data.recommender,
-         }
       })
    },
    // 获取信息
@@ -83,11 +72,11 @@ Page({
                wx.getUserInfo({
                   success: res => {
                      // 可以将 res 发送给后台解码出 unionId
-                     this.encryptedData(res).then((result) => {
+                     res.Recommender = this.data.recommender;
+                     app.encryptedData(res).then((result) => {
                         wx.setStorageSync("unionId", result);
                         this.getDetailList();
                      })
-
                   }
                })
             }
@@ -115,7 +104,6 @@ Page({
    onPullDownRefresh: function() {
 
    },
-
    /**
     * 页面上拉触底事件的处理函数
     */

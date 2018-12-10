@@ -24,23 +24,11 @@ Page({
    },
    // 获取用户授权
    authHandle(e) {
-      this.encryptedData(e.detail).then((result) => {
+      app.encryptedData(e.detail).then((result) => {
          wx.setStorageSync("unionId", result);
          this.setData({
             authModalShow: false
          });
-      })
-   },
-   // 发送给后台换取unionId
-   encryptedData(data) {
-      return app.ajax({
-         method: "POST",
-         url: "/xcx/uid/",
-         data: {
-            sessionKey: wx.getStorageSync("session_key"),
-            encryptedData: data.encryptedData,
-            iv: data.iv,
-         }
       })
    },
    /**
@@ -75,7 +63,7 @@ Page({
                wx.getUserInfo({
                   success: res => {
                      // 可以将 res 发送给后台解码出 unionId
-                     this.encryptedData(res).then((result) => {
+                     app.encryptedData(res).then((result) => {
                         wx.setStorageSync("unionId", result);
                      })
                   }
