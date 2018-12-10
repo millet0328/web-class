@@ -25,7 +25,7 @@ Page({
          wx.showModal({
             title: '提示',
             content: result,
-            showCancel:false,
+            showCancel: false,
          });
       });
    },
@@ -86,19 +86,7 @@ Page({
     * 生命周期函数--监听页面加载
     */
    onLoad: function(options) {
-      this.getOrderList(i).then((result) => {
-         let list = [];
-         if (result.cx) {
-            list = list.concat(result.cx.rt);
-         }
-         if (result.zhs) {
-            list = list.concat(result.zhs.rt);
-         }
-         this.setData({
-            list,
-            max: parseInt(result.hs),
-         });
-      });
+
    },
 
    /**
@@ -112,7 +100,19 @@ Page({
     * 生命周期函数--监听页面显示
     */
    onShow: function() {
-
+      this.getOrderList(i).then((result) => {
+         let list = [];
+         if (result.cx) {
+            list = list.concat(result.cx.rt);
+         }
+         if (result.zhs) {
+            list = list.concat(result.zhs.rt);
+         }
+         this.setData({
+            list,
+            max: parseInt(result.hs),
+         });
+      });
    },
 
    /**

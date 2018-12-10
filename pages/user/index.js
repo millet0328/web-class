@@ -14,13 +14,18 @@ Page({
    authHandle(e) {
       let data = e.detail;
       data.Recommender = this.data.recommender;
-      app.encryptedData(data).then((result) => {
-         wx.setStorageSync("unionId", result);
-         this.getDetailList();
-         this.setData({
-            authModalShow: false
+      app
+         .getOpenId()
+         .then((result) => {
+            return app.encryptedData(data)
+         })
+         .then((result) => {
+            wx.setStorageSync("unionId", result);
+            this.getDetailList();
+            this.setData({
+               authModalShow: false
+            });
          });
-      })
    },
    // 获取信息
    getDetailList() {
@@ -45,19 +50,6 @@ Page({
             recommender: options.recommender
          });
       }
-   },
-
-   /**
-    * 生命周期函数--监听页面初次渲染完成
-    */
-   onReady: function() {
-
-   },
-
-   /**
-    * 生命周期函数--监听页面显示
-    */
-   onShow: function() {
       // 监测用户授权
       wx.getSetting({
          success: res => {
@@ -73,15 +65,35 @@ Page({
                   success: res => {
                      // 可以将 res 发送给后台解码出 unionId
                      res.Recommender = this.data.recommender;
-                     app.encryptedData(res).then((result) => {
-                        wx.setStorageSync("unionId", result);
-                        this.getDetailList();
-                     })
+                     // 可以将 res 发送给后台解码出 unionId
+                     app
+                        .getOpenId()
+                        .then((result) => {
+                           return app.encryptedData(res)
+                        })
+                        .then((result) => {
+                           wx.setStorageSync("unionId", result);
+                           this.getDetailList();
+                        });
                   }
                })
             }
          }
       });
+   },
+
+   /**
+    * 生命周期函数--监听页面初次渲染完成
+    */
+   onReady: function() {
+
+   },
+
+   /**
+    * 生命周期函数--监听页面显示
+    */
+   onShow: function() {
+
    },
 
    /**

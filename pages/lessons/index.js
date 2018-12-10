@@ -24,31 +24,23 @@ Page({
    },
    // 获取用户授权
    authHandle(e) {
-      app.encryptedData(e.detail).then((result) => {
-         wx.setStorageSync("unionId", result);
-         this.setData({
-            authModalShow: false
-         });
-      })
+      app
+         .getOpenId()
+         .then((result) => {
+            return app.encryptedData(e.detail)
+         })
+         .then((result) => {
+            wx.setStorageSync("unionId", result);
+            this.setData({
+               authModalShow: false
+            });
+         })
    },
    /**
     * 生命周期函数--监听页面加载
     */
    onLoad: function(options) {
       this.getLessons();
-   },
-
-   /**
-    * 生命周期函数--监听页面初次渲染完成
-    */
-   onReady: function() {
-
-   },
-
-   /**
-    * 生命周期函数--监听页面显示
-    */
-   onShow: function() {
       // 监测用户授权
       wx.getSetting({
          success: res => {
@@ -63,14 +55,33 @@ Page({
                wx.getUserInfo({
                   success: res => {
                      // 可以将 res 发送给后台解码出 unionId
-                     app.encryptedData(res).then((result) => {
-                        wx.setStorageSync("unionId", result);
-                     })
+                     app
+                        .getOpenId()
+                        .then((result) => {
+                           return app.encryptedData(res)
+                        })
+                        .then((result) => {
+                           wx.setStorageSync("unionId", result);
+                        });
                   }
                })
             }
          }
       })
+   },
+
+   /**
+    * 生命周期函数--监听页面初次渲染完成
+    */
+   onReady: function() {
+
+   },
+
+   /**
+    * 生命周期函数--监听页面显示
+    */
+   onShow: function() {
+
    },
 
    /**

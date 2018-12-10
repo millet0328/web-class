@@ -16,8 +16,7 @@
       <input name="p" password="true" placeholder="密码" />
     </view>
     <view class='action-box'>
-      <button class='btn login' form-type="submit" size="mini">登录</button>
-      <button class='btn ticket' size="mini">领取优惠券</button>
+      <button class='btn login' form-type="submit">登录</button>
     </view>
   </form>
 </view>
