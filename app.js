@@ -1,6 +1,14 @@
 //app.js
 App({
-	onLaunch: function() {},
+	onLaunch: function() {
+		this.getOpenId().then((result) => {
+			//由于这里是网络请求，可能会在 Page.onLoad 之后才返回
+			// 所以此处加入 callback 以防止这种情况
+			if (this.userInfoCallback) {
+				this.userInfoCallback(result);
+			}
+		});
+	},
 	// 换取openId、ssesionKey
 	getOpenId() {
 		// 登录

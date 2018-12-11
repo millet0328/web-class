@@ -14,8 +14,7 @@
       <view wx:for="{{list}}" wx:key="{{index}}" class='li'>{{index+1}} . {{item}}</view>
    </view>
    <!-- 分享按钮 -->
-   <button class='shareBtn' open-type="share" type='primary'>分享领红包</button>
-   <navigator open-type="switchTab" url="/pages/order/index">订单</navigator>
+   <button class='shareBtn' open-type="share" type='primary'>分享</button>
 </view>
 <!-- 授权模态框 -->
 <auth-modal show='{{authModalShow}}' bind:getAuth='authHandle' bind:cancel='cancelAuth'></auth-modal>
