@@ -87,6 +87,11 @@ Page({
 							}, 1200);
 						}
 					})
+				} else {
+					wx.showToast({
+						title: result,
+						icon: "none",
+					})
 				}
 			})
 	},
