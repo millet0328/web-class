@@ -10,7 +10,7 @@
 		<image class='photo' src='{{detail.head}}'></image>
 		<view class='right'>
 			<view class='name'>
-				学神代刷网课
+				
 			</view>
 			<view class='timer'>
 				<text class="time-box">{{day}}</text> 天

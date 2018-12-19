@@ -29,7 +29,7 @@
             <text>{{item.sl}}</text>
          </view>
          <view class='status'>
-            <text class='gray'>考试状态：</text>
+            <text class='gray'>测验状态：</text>
             <text>{{item.kszt||'无'}}</text>
          </view>
          <view class='rest'>
@@ -41,7 +41,7 @@
             <text>{{item.sszt}}</text>
          </view>
          <view class='test-time'>
-            <text class='gray'>考试时间：</text>
+            <text class='gray'>测验时间：</text>
             <text>{{item.kssj}}</text>
          </view>
          <view class='action'>

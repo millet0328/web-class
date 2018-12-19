@@ -24,7 +24,7 @@
         </label>
         <label bindtap='ksCheckHandle' data-index='{{index}}' class="checkbox">
           <checkbox value="" checked='{{item.ksChecked}}' disabled='{{item.ksgm!=0}}' />
-          <view> 考试：{{item.kssj}}，价格
+          <view> 测验：{{item.kssj}}，价格
             <text class='orange'>{{item.ksjg*2}}</text> 元，
             <text class='status blue'>{{item.kszt}}</text>
           </view>
