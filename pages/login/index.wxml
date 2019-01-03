@@ -1,7 +1,7 @@
 <!--pages/login/index.wxml-->
 <view class='container'>
   <image src='../../images/img/bg.jpg' class='bg'></image>
-  <form bindsubmit="formSubmit">
+  <form report-submit="true" bindsubmit="formSubmit">
     <view class='title'>{{title}}</view>
     <view wx:if="{{type==3}}" class='form-group school'>
       <input name="x" bindinput="schoolHandle" value='{{x}}' placeholder="学校名称" />
