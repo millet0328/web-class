@@ -10,10 +10,10 @@
       </view>
     </view>
     <view class='form-group'>
-      <input name="u" placeholder="学号/手机号/邮箱" />
+      <input name="u" value='{{u}}' placeholder="学号/手机号/邮箱" />
     </view>
     <view class='form-group'>
-      <input name="p" password="true" placeholder="密码" />
+      <input name="p" value='{{p}}' password="true" placeholder="密码" />
     </view>
     <view class='action-box'>
       <button class='btn login' form-type="submit">登录</button>

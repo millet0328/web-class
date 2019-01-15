@@ -9,9 +9,9 @@ Page({
       title: '',
       schools: [],
       showSelect: false,
-      x: "",
-      u: "",
-      p: "",
+      x: "山西林业职业技术学院",
+      u: "18403421460",
+      p: "hsw123...",
    },
    // 学校输入框
    schoolHandle(e) {

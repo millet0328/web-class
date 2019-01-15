@@ -17,7 +17,7 @@
             <text>{{item.zh}}</text>
          </view>
          <view class='type'>
-            <text class='gray'>网课：</text>
+            <text class='gray'>课程：</text>
             <text>{{item.wk}}</text>
          </view>
          <view class='status'>
@@ -36,7 +36,7 @@
             <text class='gray'>剩余：</text>
             <text>{{item.sysl||0}}</text>
          </view>
-         <view class='real-time status'>
+         <view hidden='true' class='real-time status'>
             <text class='gray'>实时状态：</text>
             <text>{{item.sszt}}</text>
          </view>
@@ -44,7 +44,7 @@
             <text class='gray'>测验时间：</text>
             <text>{{item.kssj}}</text>
          </view>
-         <view class='action'>
+         <view hidden='true' class='action'>
             <button size="mini" data-id="{{item.id}}" bindtap='startHandle' type='primary'>启动</button>
             <button size="mini" data-id="{{item.id}}" bindtap='pauseHandle' type='warn'>暂停</button>
          </view>
