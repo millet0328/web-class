@@ -69,7 +69,8 @@
 
 .order-list .li .action {
    width: 100%;
-   display: flex;
+   /* display: flex; */
+   display: none;
    align-items: center;
    justify-content: space-between;
    padding-bottom: 0;

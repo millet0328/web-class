@@ -24,7 +24,7 @@
             <text class='gray'>状态：</text>
             <text>{{item.zt}}</text>
          </view>
-         <view class='total'>
+         <view hidden='true' class='total'>
             <text class='gray'>总集：</text>
             <text>{{item.sl}}</text>
          </view>
@@ -32,7 +32,7 @@
             <text class='gray'>测验状态：</text>
             <text>{{item.kszt||'无'}}</text>
          </view>
-         <view class='rest'>
+         <view hidden='true' class='rest'>
             <text class='gray'>剩余：</text>
             <text>{{item.sysl||0}}</text>
          </view>
