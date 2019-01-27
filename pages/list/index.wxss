@@ -51,7 +51,7 @@
 
 .list-box .li .content label {
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
 	padding-top: 32rpx;
 }
 
